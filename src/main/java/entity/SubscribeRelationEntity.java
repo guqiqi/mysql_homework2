@@ -11,11 +11,11 @@ public class SubscribeRelationEntity {
     private Integer planId;
     private Timestamp startTime;
 
-    public SubscribeRelationEntity(){
+    public SubscribeRelationEntity() {
 
     }
 
-    public SubscribeRelationEntity(String phoneNumber, Integer planId, Timestamp startTime){
+    public SubscribeRelationEntity(String phoneNumber, Integer planId, Timestamp startTime) {
         this.phoneNumber = phoneNumber;
         this.planId = planId;
         this.startTime = startTime;
@@ -23,6 +23,7 @@ public class SubscribeRelationEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

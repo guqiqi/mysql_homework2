@@ -28,6 +28,7 @@ public class MessageRecordEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

@@ -3,8 +3,6 @@ package entity;
 import constant.DataType;
 
 import javax.persistence.*;
-import java.io.InputStream;
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
@@ -14,23 +12,24 @@ public class DataRecordEntity {
     private String phoneNumber;
     private DataType type;
     private Timestamp time;
-    private Integer usage;
+    private Integer amount;
     private Double cost;
 
     public DataRecordEntity(){
 
     }
 
-    public DataRecordEntity(String phoneNumber, DataType type, Timestamp time, Integer usage, Double cost){
+    public DataRecordEntity(String phoneNumber, DataType type, Timestamp time, Integer amount, Double cost){
         this.phoneNumber = phoneNumber;
         this.type = type;
         this.time = time;
-        this.usage = usage;
+        this.amount = amount;
         this.cost = cost;
     }
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -70,13 +69,13 @@ public class DataRecordEntity {
     }
 
     @Basic
-    @Column(name = "usage")
-    public Integer getUsage() {
-        return usage;
+    @Column(name = "amount")
+    public Integer getAmount() {
+        return amount;
     }
 
-    public void setUsage(Integer usage) {
-        this.usage = usage;
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
     @Basic
@@ -100,7 +99,7 @@ public class DataRecordEntity {
         if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (time != null ? !time.equals(that.time) : that.time != null) return false;
-        if (usage != null ? !usage.equals(that.usage) : that.usage != null) return false;
+        if (amount != null ? !amount.equals(that.amount) : that.amount != null) return false;
         if (cost != null ? !cost.equals(that.cost) : that.cost != null) return false;
 
         return true;
@@ -112,7 +111,7 @@ public class DataRecordEntity {
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (time != null ? time.hashCode() : 0);
-        result = 31 * result + (usage != null ? usage.hashCode() : 0);
+        result = 31 * result + (amount != null ? amount.hashCode() : 0);
         result = 31 * result + (cost != null ? cost.hashCode() : 0);
         return result;
     }
