@@ -11,6 +11,16 @@ public class SubscribeRelationEntity {
     private Integer planId;
     private Timestamp startTime;
 
+    public SubscribeRelationEntity(){
+
+    }
+
+    public SubscribeRelationEntity(String phoneNumber, Integer planId, Timestamp startTime){
+        this.phoneNumber = phoneNumber;
+        this.planId = planId;
+        this.startTime = startTime;
+    }
+
     @Id
     @Column(name = "id")
     public Integer getId() {

@@ -3,6 +3,7 @@ package entity;
 import constant.DataType;
 
 import javax.persistence.*;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -15,6 +16,18 @@ public class DataRecordEntity {
     private Timestamp time;
     private Integer usage;
     private Double cost;
+
+    public DataRecordEntity(){
+
+    }
+
+    public DataRecordEntity(String phoneNumber, DataType type, Timestamp time, Integer usage, Double cost){
+        this.phoneNumber = phoneNumber;
+        this.type = type;
+        this.time = time;
+        this.usage = usage;
+        this.cost = cost;
+    }
 
     @Id
     @Column(name = "id")

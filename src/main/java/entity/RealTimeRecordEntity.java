@@ -11,6 +11,17 @@ public class RealTimeRecordEntity {
     private Double messageCost;
     private Double dataCost;
 
+    public RealTimeRecordEntity() {
+    }
+
+    public RealTimeRecordEntity(String phoneNumber, Double baseCost, Double callingCost, Double messageCost, Double dataCost) {
+        this.phoneNumber = phoneNumber;
+        this.baseCost = baseCost;
+        this.callingCost = callingCost;
+        this.messageCost = messageCost;
+        this.dataCost = dataCost;
+    }
+
     @Id
     @Column(name = "phone_number")
     public String getPhoneNumber() {

@@ -12,6 +12,16 @@ public class PlanEntity {
     private Integer baseLocalUsage;
     private Integer baseNationalUsage;
 
+    public PlanEntity(){}
+
+    public PlanEntity(Double baseCost, Integer baseCalling, Integer baseMessage, Integer baseLocalUsage, Integer baseNationalUsage) {
+        this.baseCost = baseCost;
+        this.baseCalling = baseCalling;
+        this.baseMessage = baseMessage;
+        this.baseLocalUsage = baseLocalUsage;
+        this.baseNationalUsage = baseNationalUsage;
+    }
+
     @Id
     @Column(name = "plan_id")
     public Integer getPlanId() {

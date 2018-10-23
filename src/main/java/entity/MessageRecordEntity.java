@@ -15,6 +15,17 @@ public class MessageRecordEntity {
     private Timestamp time;
     private Double cost;
 
+    public MessageRecordEntity(){
+
+    }
+
+    public MessageRecordEntity(String phoneNumber, MessageType type, Timestamp time, Double cost){
+        this.phoneNumber = phoneNumber;
+        this.type = type;
+        this.time = time;
+        this.cost = cost;
+    }
+
     @Id
     @Column(name = "id")
     public Integer getId() {

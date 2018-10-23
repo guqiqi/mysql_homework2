@@ -4,6 +4,7 @@ import constant.SubscribeEffectType;
 import constant.SubscribeOperationType;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -16,6 +17,18 @@ public class SubscribeRecordEntity {
     private Integer planId;
     private SubscribeOperationType operationType;
     private SubscribeEffectType effectType;
+
+    public SubscribeRecordEntity(){
+
+    }
+
+    public SubscribeRecordEntity(String phoneNumber, Timestamp time, Integer planId, SubscribeOperationType operationType, SubscribeEffectType effectType){
+        this.phoneNumber = phoneNumber;
+        this.time = time;
+        this.planId = planId;
+        this.operationType = operationType;
+        this.effectType = effectType;
+    }
 
     @Id
     @Column(name = "id")

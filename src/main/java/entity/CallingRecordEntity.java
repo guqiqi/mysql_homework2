@@ -15,6 +15,18 @@ public class CallingRecordEntity {
     private Integer lastingTime;
     private Double cost;
 
+    public CallingRecordEntity(){
+
+    }
+
+    public CallingRecordEntity(String phoneNumber, CallingType type, Timestamp time, Integer lastingTime, Double cost){
+        this.phoneNumber = phoneNumber;
+        this.type = type;
+        this.time = time;
+        this.lastingTime = lastingTime;
+        this.cost = cost;
+    }
+
     @Id
     @Column(name = "id")
     public Integer getId() {

@@ -15,6 +15,20 @@ public class BillRecordEntity {
     private Double messageCost;
     private Double dataCost;
 
+    public BillRecordEntity() {
+
+    }
+
+    public BillRecordEntity(String phoneNumber, Date time, Double cost, Double baseCost, Double callingCost, Double messageCost, Double dataCost) {
+        this.phoneNumber = phoneNumber;
+        this.time = time;
+        this.cost = cost;
+        this.baseCost = baseCost;
+        this.callingCost = callingCost;
+        this.messageCost = messageCost;
+        this.dataCost = dataCost;
+    }
+
     @Id
     @Column(name = "id")
     public Integer getId() {
