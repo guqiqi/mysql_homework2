@@ -39,5 +39,6 @@
         <mapping class="entity.RealTimeRecordEntity"/>
         <mapping class="entity.SubscribeRecordEntity"/>
         <mapping class="entity.SubscribeRelationEntity"/>
+        <mapping class="entity.UserEntity"/>
     </session-factory>
 </hibernate-configuration>

@@ -3,7 +3,7 @@ package entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "real_time_record", schema = "mysql_homework2")
+@Table(name = "real_time_record", schema = "mysql_homework2", catalog = "")
 public class RealTimeRecordEntity {
     private String phoneNumber;
     private Double baseCost;
@@ -12,15 +12,17 @@ public class RealTimeRecordEntity {
     private Double dataCost;
     private Integer calling;
     private Integer message;
-    private Integer data;
-    private Integer baseCalling;
+    private Integer localData;
+    private Integer nationalData;
     private Integer baseMessage;
-    private Integer baseData;
+    private Integer baseLocalData;
+    private Integer baseNationalData;
+    private Integer baseCalling;
 
     public RealTimeRecordEntity() {
     }
 
-    public RealTimeRecordEntity(String phoneNumber, Double baseCost, Double callingCost, Double messageCost, Double dataCost, Integer calling, Integer message, Integer data, Integer baseCalling, Integer baseMessage, Integer baseData) {
+    public RealTimeRecordEntity(String phoneNumber, Double baseCost, Double callingCost, Double messageCost, Double dataCost, Integer calling, Integer message, Integer localData, Integer nationalData, Integer baseCalling, Integer baseMessage, Integer baseLocalData, Integer baseNationalData) {
         this.phoneNumber = phoneNumber;
         this.baseCost = baseCost;
         this.callingCost = callingCost;
@@ -28,10 +30,12 @@ public class RealTimeRecordEntity {
         this.dataCost = dataCost;
         this.calling = calling;
         this.message = message;
-        this.data = data;
+        this.localData = localData;
+        this.nationalData = nationalData;
         this.baseCalling = baseCalling;
         this.baseMessage = baseMessage;
-        this.baseData = baseData;
+        this.baseLocalData = baseLocalData;
+        this.baseNationalData = baseNationalData;
     }
 
     @Id
@@ -105,23 +109,23 @@ public class RealTimeRecordEntity {
     }
 
     @Basic
-    @Column(name = "data")
-    public Integer getData() {
-        return data;
+    @Column(name = "local_data")
+    public Integer getLocalData() {
+        return localData;
     }
 
-    public void setData(Integer data) {
-        this.data = data;
+    public void setLocalData(Integer localData) {
+        this.localData = localData;
     }
 
     @Basic
-    @Column(name = "base_calling")
-    public Integer getBaseCalling() {
-        return baseCalling;
+    @Column(name = "national_data")
+    public Integer getNationalData() {
+        return nationalData;
     }
 
-    public void setBaseCalling(Integer baseCalling) {
-        this.baseCalling = baseCalling;
+    public void setNationalData(Integer nationalData) {
+        this.nationalData = nationalData;
     }
 
     @Basic
@@ -135,13 +139,33 @@ public class RealTimeRecordEntity {
     }
 
     @Basic
-    @Column(name = "base_data")
-    public Integer getBaseData() {
-        return baseData;
+    @Column(name = "base_local_data")
+    public Integer getBaseLocalData() {
+        return baseLocalData;
     }
 
-    public void setBaseData(Integer baseData) {
-        this.baseData = baseData;
+    public void setBaseLocalData(Integer baseLocalData) {
+        this.baseLocalData = baseLocalData;
+    }
+
+    @Basic
+    @Column(name = "base_national_data")
+    public Integer getBaseNationalData() {
+        return baseNationalData;
+    }
+
+    public void setBaseNationalData(Integer baseNationalData) {
+        this.baseNationalData = baseNationalData;
+    }
+
+    @Basic
+    @Column(name = "base_calling")
+    public Integer getBaseCalling() {
+        return baseCalling;
+    }
+
+    public void setBaseCalling(Integer baseCalling) {
+        this.baseCalling = baseCalling;
     }
 
     @Override
@@ -156,6 +180,16 @@ public class RealTimeRecordEntity {
         if (callingCost != null ? !callingCost.equals(that.callingCost) : that.callingCost != null) return false;
         if (messageCost != null ? !messageCost.equals(that.messageCost) : that.messageCost != null) return false;
         if (dataCost != null ? !dataCost.equals(that.dataCost) : that.dataCost != null) return false;
+        if (calling != null ? !calling.equals(that.calling) : that.calling != null) return false;
+        if (message != null ? !message.equals(that.message) : that.message != null) return false;
+        if (localData != null ? !localData.equals(that.localData) : that.localData != null) return false;
+        if (nationalData != null ? !nationalData.equals(that.nationalData) : that.nationalData != null) return false;
+        if (baseMessage != null ? !baseMessage.equals(that.baseMessage) : that.baseMessage != null) return false;
+        if (baseLocalData != null ? !baseLocalData.equals(that.baseLocalData) : that.baseLocalData != null)
+            return false;
+        if (baseNationalData != null ? !baseNationalData.equals(that.baseNationalData) : that.baseNationalData != null)
+            return false;
+        if (baseCalling != null ? !baseCalling.equals(that.baseCalling) : that.baseCalling != null) return false;
 
         return true;
     }
@@ -167,6 +201,14 @@ public class RealTimeRecordEntity {
         result = 31 * result + (callingCost != null ? callingCost.hashCode() : 0);
         result = 31 * result + (messageCost != null ? messageCost.hashCode() : 0);
         result = 31 * result + (dataCost != null ? dataCost.hashCode() : 0);
+        result = 31 * result + (calling != null ? calling.hashCode() : 0);
+        result = 31 * result + (message != null ? message.hashCode() : 0);
+        result = 31 * result + (localData != null ? localData.hashCode() : 0);
+        result = 31 * result + (nationalData != null ? nationalData.hashCode() : 0);
+        result = 31 * result + (baseMessage != null ? baseMessage.hashCode() : 0);
+        result = 31 * result + (baseLocalData != null ? baseLocalData.hashCode() : 0);
+        result = 31 * result + (baseNationalData != null ? baseNationalData.hashCode() : 0);
+        result = 31 * result + (baseCalling != null ? baseCalling.hashCode() : 0);
         return result;
     }
 }

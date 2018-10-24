@@ -10,6 +10,7 @@ public class SubscribeRelationEntity {
     private String phoneNumber;
     private Integer planId;
     private Timestamp startTime;
+    private Timestamp endTime;
 
     public SubscribeRelationEntity() {
 
@@ -62,6 +63,16 @@ public class SubscribeRelationEntity {
         this.startTime = startTime;
     }
 
+    @Basic
+    @Column(name = "end_time")
+    public Timestamp getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Timestamp endTime) {
+        this.endTime = endTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,6 +84,7 @@ public class SubscribeRelationEntity {
         if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
         if (planId != null ? !planId.equals(that.planId) : that.planId != null) return false;
         if (startTime != null ? !startTime.equals(that.startTime) : that.startTime != null) return false;
+        if (endTime != null ? !endTime.equals(that.endTime) : that.endTime != null) return false;
 
         return true;
     }
@@ -83,6 +95,7 @@ public class SubscribeRelationEntity {
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (planId != null ? planId.hashCode() : 0);
         result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
+        result = 31 * result + (endTime != null ? endTime.hashCode() : 0);
         return result;
     }
 }
