@@ -30,7 +30,7 @@ public class RealTimeRecordEntityTest {
 
     @Test
     public void testInsert() {
-        RealTimeRecordEntity realTimeRecordEntity = new RealTimeRecordEntity("13770758178", 20.0, 30.0, 30.0, 30.0);
+        RealTimeRecordEntity realTimeRecordEntity = new RealTimeRecordEntity("13770758178", 20.0, 30.0, 30.0, 30.0, 10, 10, 10, 20, 20, 20);
         session.save(realTimeRecordEntity);
     }
 }

@@ -10,16 +10,28 @@ public class RealTimeRecordEntity {
     private Double callingCost;
     private Double messageCost;
     private Double dataCost;
+    private Integer calling;
+    private Integer message;
+    private Integer data;
+    private Integer baseCalling;
+    private Integer baseMessage;
+    private Integer baseData;
 
     public RealTimeRecordEntity() {
     }
 
-    public RealTimeRecordEntity(String phoneNumber, Double baseCost, Double callingCost, Double messageCost, Double dataCost) {
+    public RealTimeRecordEntity(String phoneNumber, Double baseCost, Double callingCost, Double messageCost, Double dataCost, Integer calling, Integer message, Integer data, Integer baseCalling, Integer baseMessage, Integer baseData) {
         this.phoneNumber = phoneNumber;
         this.baseCost = baseCost;
         this.callingCost = callingCost;
         this.messageCost = messageCost;
         this.dataCost = dataCost;
+        this.calling = calling;
+        this.message = message;
+        this.data = data;
+        this.baseCalling = baseCalling;
+        this.baseMessage = baseMessage;
+        this.baseData = baseData;
     }
 
     @Id
@@ -70,6 +82,66 @@ public class RealTimeRecordEntity {
 
     public void setDataCost(Double dataCost) {
         this.dataCost = dataCost;
+    }
+
+    @Basic
+    @Column(name = "calling")
+    public Integer getCalling() {
+        return calling;
+    }
+
+    public void setCalling(Integer calling) {
+        this.calling = calling;
+    }
+
+    @Basic
+    @Column(name = "message")
+    public Integer getMessage() {
+        return message;
+    }
+
+    public void setMessage(Integer message) {
+        this.message = message;
+    }
+
+    @Basic
+    @Column(name = "data")
+    public Integer getData() {
+        return data;
+    }
+
+    public void setData(Integer data) {
+        this.data = data;
+    }
+
+    @Basic
+    @Column(name = "base_calling")
+    public Integer getBaseCalling() {
+        return baseCalling;
+    }
+
+    public void setBaseCalling(Integer baseCalling) {
+        this.baseCalling = baseCalling;
+    }
+
+    @Basic
+    @Column(name = "base_message")
+    public Integer getBaseMessage() {
+        return baseMessage;
+    }
+
+    public void setBaseMessage(Integer baseMessage) {
+        this.baseMessage = baseMessage;
+    }
+
+    @Basic
+    @Column(name = "base_data")
+    public Integer getBaseData() {
+        return baseData;
+    }
+
+    public void setBaseData(Integer baseData) {
+        this.baseData = baseData;
     }
 
     @Override
