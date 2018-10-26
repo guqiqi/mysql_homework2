@@ -2,8 +2,6 @@ package dao;
 
 import entity.RealTimeRecordEntity;
 
-import java.util.List;
-
 // 实时话费记录
 public interface RealTimeRecordDao {
     public RealTimeRecordEntity getRealTimeRecordByPhoneNumber(String phoneNumber);
@@ -15,6 +13,9 @@ public interface RealTimeRecordDao {
     public void updateLocalData(String phoneNumber, Integer data, Double dataCost);
 
     public void updateNationalData(String phoneNumber, Integer data, Double dataCost);
+
+    public void updatePlan(String phoneNumber, Double baseCost, Integer baseCalling, Integer baseMessage, Integer
+            baseLocalData, Integer baseNationalData);
 
     // 一键清空
     public void refreshMonthlyRecord();

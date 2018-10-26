@@ -37,9 +37,4 @@ public class BillRecordDaoImpl extends DaoUtil implements BillRecordDao {
         }
         return list;
     }
-
-    public BillRecordEntity generateBillRecord(int year, int month) {
-        // TODO
-        return null;
-    }
 }

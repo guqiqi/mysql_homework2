@@ -38,6 +38,22 @@ public class RealTimeRecordEntity {
         this.baseNationalData = baseNationalData;
     }
 
+    public RealTimeRecordEntity(String phoneNumber, Double baseCost, Integer baseCalling, Integer baseMessage, Integer baseLocalData, Integer baseNationalData) {
+        this.phoneNumber = phoneNumber;
+        this.baseCost = baseCost;
+        this.callingCost = 0.0;
+        this.messageCost = 0.0;
+        this.dataCost = 0.0;
+        this.calling = 0;
+        this.message = 0;
+        this.localData = 0;
+        this.nationalData = 0;
+        this.baseCalling = baseCalling;
+        this.baseMessage = baseMessage;
+        this.baseLocalData = baseLocalData;
+        this.baseNationalData = baseNationalData;
+    }
+
     @Id
     @Column(name = "phone_number")
     public String getPhoneNumber() {

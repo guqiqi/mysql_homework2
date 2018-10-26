@@ -1,5 +1,7 @@
 package entity;
 
+import util.DateUtil;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -19,10 +21,22 @@ public class BillRecordEntity {
 
     }
 
-    public BillRecordEntity(String phoneNumber, Date time, Double cost, Double baseCost, Double callingCost, Double messageCost, Double dataCost) {
+    public BillRecordEntity(String phoneNumber, Date time, Double cost, Double baseCost, Double callingCost, Double
+            messageCost, Double dataCost) {
         this.phoneNumber = phoneNumber;
         this.time = time;
         this.cost = cost;
+        this.baseCost = baseCost;
+        this.callingCost = callingCost;
+        this.messageCost = messageCost;
+        this.dataCost = dataCost;
+    }
+
+    public BillRecordEntity(String phoneNumber, Double baseCost, Double callingCost, Double
+            messageCost, Double dataCost) {
+        this.phoneNumber = phoneNumber;
+        this.time = new Date(2018, 9, 10);
+        this.cost = baseCost + callingCost + messageCost + dataCost;
         this.baseCost = baseCost;
         this.callingCost = callingCost;
         this.messageCost = messageCost;

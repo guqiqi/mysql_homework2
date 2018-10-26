@@ -1,6 +1,7 @@
 package util;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,8 +37,24 @@ public class DateUtil {
         }
     }
 
-    public static void main(String[] args){
+    public static int[] getYearAndMonth() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String tsStr = sdf.format(timestamp);
+        System.out.println(tsStr);
+        int[] result={Integer.parseInt(tsStr.split("-")[0]), Integer.parseInt(tsStr.split("-")[1])};
+        return result;
+    }
+
+    public static void main(String[] args) {
         System.out.println(getFirstDayOfNextMonth());
         System.out.println(getLastDayOfMonth());
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) + 1;
+
+        System.out.println(getYearAndMonth()[0] + "！！！" + getYearAndMonth()[1]);
     }
 }
