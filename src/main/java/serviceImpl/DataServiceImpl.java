@@ -19,7 +19,7 @@ public class DataServiceImpl implements DataService {
         RealTimeRecordEntity realTimeRecordEntity = realTimeRecordDao.getRealTimeRecordByPhoneNumber(phoneNumber);
 
         if (type == DataType.LOCAL) {
-            if (realTimeRecordEntity.getBaseLocalData() >= realTimeRecordEntity.getLocalData() + amount) {
+            if (realTimeRecordEntity.getBaseLocalData() * 1024 >= realTimeRecordEntity.getLocalData() + amount) {
                 dataRecordEntity = new DataRecordEntity(phoneNumber, type, time, amount, 0.0);
                 new DataRecordDaoImpl().add(dataRecordEntity);
 
@@ -33,7 +33,7 @@ public class DataServiceImpl implements DataService {
                 realTimeRecordDao.updateLocalData(realTimeRecordEntity.getPhoneNumber(), realTimeRecordEntity.getLocalData() + amount, realTimeRecordEntity.getDataCost() + cost);
             }
         } else {
-            if (realTimeRecordEntity.getBaseNationalData() >= realTimeRecordEntity.getNationalData() + amount) {
+            if (realTimeRecordEntity.getBaseNationalData() * 1024 >= realTimeRecordEntity.getNationalData() + amount) {
                 dataRecordEntity = new DataRecordEntity(phoneNumber, type, time, amount, 0.0);
                 new DataRecordDaoImpl().add(dataRecordEntity);
 

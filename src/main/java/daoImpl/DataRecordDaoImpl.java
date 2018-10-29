@@ -1,7 +1,6 @@
 package daoImpl;
 
 import dao.DataRecordDao;
-import entity.BillRecordEntity;
 import entity.DataRecordEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

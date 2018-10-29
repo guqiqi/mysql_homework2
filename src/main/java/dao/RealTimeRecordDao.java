@@ -17,6 +17,14 @@ public interface RealTimeRecordDao {
     public void updatePlan(String phoneNumber, Double baseCost, Integer baseCalling, Integer baseMessage, Integer
             baseLocalData, Integer baseNationalData);
 
+    public void updateCallingPlan(String phoneNumber, Double baseCost, Integer baseCalling);
+
+    public void updateMessagePlan(String phoneNumber, Double baseCost, Integer baseMessage);
+
+    public void updateLocalDataPlan(String phoneNumber, Double baseCost, Integer baseLocalData);
+
+    public void updateNationalDataPlan(String phoneNumber, Double baseCost, Integer baseNationalData);
+
     // 一键清空
     public void refreshMonthlyRecord();
 }

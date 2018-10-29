@@ -42,6 +42,13 @@ public class CallingServiceImpl implements CallingService {
                 new CallingRecordDaoImpl().add(callingRecordEntity);
 
                 realTimeRecordDao.updateCalling(realTimeRecordEntity.getPhoneNumber(), realTimeRecordEntity.getCalling() + minute, realTimeRecordEntity.getCallingCost());
+            } else if (realTimeRecordEntity.getBaseCalling() <= realTimeRecordEntity.getCalling()) {
+                double cost = CommenCost.CALLING * minute;
+
+                callingRecordEntity = new CallingRecordEntity(phoneNumber, type, time, lastingTime, cost);
+                new CallingRecordDaoImpl().add(callingRecordEntity);
+
+                realTimeRecordDao.updateCalling(realTimeRecordEntity.getPhoneNumber(), realTimeRecordEntity.getCalling() + minute, realTimeRecordEntity.getCallingCost() + cost);
             } else {
                 double cost = CommenCost.CALLING * (minute - realTimeRecordEntity.getBaseCalling() + realTimeRecordEntity.getCalling());
 

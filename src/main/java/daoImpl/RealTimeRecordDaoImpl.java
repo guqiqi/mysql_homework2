@@ -163,6 +163,110 @@ public class RealTimeRecordDaoImpl extends DaoUtil implements RealTimeRecordDao 
         }
     }
 
+    public void updateCallingPlan(String phoneNumber, Double baseCost, Integer baseCalling) {
+        SessionFactory sessionFactory = null;
+        Session session = null;
+        Transaction tx = null;
+        try {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+            session = sessionFactory.openSession();
+            tx = session.beginTransaction();
+            // 1、得到Query对象，并写入hql语句
+            Query query = session.createQuery("UPDATE RealTimeRecordEntity r SET r.baseCost = ?, r.baseCalling = ? " +
+                    "where r .phoneNumber = ?");
+            //2、填写上一步中占位符的内容
+            query.setParameter(0, baseCost);
+            query.setParameter(1, baseCalling);
+            query.setParameter(2, phoneNumber);
+            //3、提交更新
+            query.executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
+    }
+
+    public void updateMessagePlan(String phoneNumber, Double baseCost, Integer baseMessage) {
+        SessionFactory sessionFactory = null;
+        Session session = null;
+        Transaction tx = null;
+        try {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+            session = sessionFactory.openSession();
+            tx = session.beginTransaction();
+            // 1、得到Query对象，并写入hql语句
+            Query query = session.createQuery("UPDATE RealTimeRecordEntity r SET r.baseCost = ?, r.baseMessage = ? " +
+                    "where r .phoneNumber = ?");
+            //2、填写上一步中占位符的内容
+            query.setParameter(0, baseCost);
+            query.setParameter(1, baseMessage);
+            query.setParameter(2, phoneNumber);
+            //3、提交更新
+            query.executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
+    }
+
+    public void updateLocalDataPlan(String phoneNumber, Double baseCost, Integer baseLocalData) {
+        SessionFactory sessionFactory = null;
+        Session session = null;
+        Transaction tx = null;
+        try {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+            session = sessionFactory.openSession();
+            tx = session.beginTransaction();
+            // 1、得到Query对象，并写入hql语句
+            Query query = session.createQuery("UPDATE RealTimeRecordEntity r SET r.baseCost = ?, r.baseLocalData = ? " +
+                    "where r .phoneNumber = ?");
+            //2、填写上一步中占位符的内容
+            query.setParameter(0, baseCost);
+            query.setParameter(1, baseLocalData);
+            query.setParameter(2, phoneNumber);
+            //3、提交更新
+            query.executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
+    }
+
+    public void updateNationalDataPlan(String phoneNumber, Double baseCost, Integer baseNationalData) {
+        SessionFactory sessionFactory = null;
+        Session session = null;
+        Transaction tx = null;
+        try {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+            session = sessionFactory.openSession();
+            tx = session.beginTransaction();
+            // 1、得到Query对象，并写入hql语句
+            Query query = session.createQuery("UPDATE RealTimeRecordEntity r SET r.baseCost = ?, r.baseNationalData = ? " +
+                    "where r .phoneNumber = ?");
+            //2、填写上一步中占位符的内容
+            query.setParameter(0, baseCost);
+            query.setParameter(1, baseNationalData);
+            query.setParameter(2, phoneNumber);
+            //3、提交更新
+            query.executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            session.close();
+            sessionFactory.close();
+        }
+    }
+
     public void refreshMonthlyRecord() {
         // 套餐订阅情况更新完之后更新
         SessionFactory sessionFactory = null;
