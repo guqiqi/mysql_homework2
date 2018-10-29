@@ -21,6 +21,7 @@ public class SubscribeDaoImpl extends DaoUtil implements SubscribeDao {
         Session session = null;
         Transaction tx = null;
         List<SubscribeRecordEntity> list = new ArrayList<SubscribeRecordEntity>();
+        long startTime = System.currentTimeMillis();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             session = sessionFactory.openSession();
@@ -38,6 +39,8 @@ public class SubscribeDaoImpl extends DaoUtil implements SubscribeDao {
             session.close();
             sessionFactory.close();
         }
+        long endTime=System.currentTimeMillis();
+        System.out.println("程序运行时间： "+(endTime - startTime)+"ms");
 
         return list;
     }
@@ -46,6 +49,7 @@ public class SubscribeDaoImpl extends DaoUtil implements SubscribeDao {
         SessionFactory sessionFactory = null;
         Session session = null;
         Transaction tx = null;
+        long startTime = System.currentTimeMillis();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             session = sessionFactory.openSession();
@@ -65,6 +69,8 @@ public class SubscribeDaoImpl extends DaoUtil implements SubscribeDao {
             session.close();
             sessionFactory.close();
         }
+        long endTime1 = System.currentTimeMillis();
+        System.out.println("程序运行时间： " + (endTime1 - startTime) + "ms");
     }
 
     // 删除过期的套餐订阅
@@ -83,8 +89,8 @@ public class SubscribeDaoImpl extends DaoUtil implements SubscribeDao {
             list = query.list();
 
             // 删除已经过期的套餐订阅
-            for (SubscribeRelationEntity entity: list){
-                if(entity.getEndTime().before(new Date()))
+            for (SubscribeRelationEntity entity : list) {
+                if (entity.getEndTime().before(new Date()))
                     session.delete(entity);
             }
 

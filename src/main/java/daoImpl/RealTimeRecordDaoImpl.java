@@ -21,6 +21,7 @@ public class RealTimeRecordDaoImpl extends DaoUtil implements RealTimeRecordDao 
         Session session = null;
         Transaction tx = null;
         RealTimeRecordEntity realTimeRecordEntity = new RealTimeRecordEntity();
+        long startTime=System.currentTimeMillis();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             session = sessionFactory.openSession();
@@ -31,6 +32,9 @@ public class RealTimeRecordDaoImpl extends DaoUtil implements RealTimeRecordDao 
             session.close();
             sessionFactory.close();
         }
+        long endTime=System.currentTimeMillis();
+        System.out.println("程序运行时间： "+(endTime - startTime)+"ms");
+
         return realTimeRecordEntity;
     }
 
@@ -38,6 +42,7 @@ public class RealTimeRecordDaoImpl extends DaoUtil implements RealTimeRecordDao 
         SessionFactory sessionFactory = null;
         Session session = null;
         Transaction tx = null;
+        long startTime=System.currentTimeMillis();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             session = sessionFactory.openSession();
@@ -57,12 +62,16 @@ public class RealTimeRecordDaoImpl extends DaoUtil implements RealTimeRecordDao 
             session.close();
             sessionFactory.close();
         }
+        long endTime=System.currentTimeMillis();
+        System.out.println("程序运行时间： "+(endTime - startTime)+"ms");
+
     }
 
     public void updateMessage(String phoneNumber, Integer message, Double messageCost) {
         SessionFactory sessionFactory = null;
         Session session = null;
         Transaction tx = null;
+        long startTime=System.currentTimeMillis();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             session = sessionFactory.openSession();
@@ -82,12 +91,16 @@ public class RealTimeRecordDaoImpl extends DaoUtil implements RealTimeRecordDao 
             session.close();
             sessionFactory.close();
         }
+        long endTime=System.currentTimeMillis();
+        System.out.println("程序运行时间： "+(endTime - startTime)+"ms");
+
     }
 
     public void updateLocalData(String phoneNumber, Integer data, Double dataCost) {
         SessionFactory sessionFactory = null;
         Session session = null;
         Transaction tx = null;
+        long startTime=System.currentTimeMillis();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             session = sessionFactory.openSession();
@@ -107,12 +120,16 @@ public class RealTimeRecordDaoImpl extends DaoUtil implements RealTimeRecordDao 
             session.close();
             sessionFactory.close();
         }
+        long endTime=System.currentTimeMillis();
+        System.out.println("程序运行时间： "+(endTime - startTime)+"ms");
+
     }
 
     public void updateNationalData(String phoneNumber, Integer data, Double dataCost) {
         SessionFactory sessionFactory = null;
         Session session = null;
         Transaction tx = null;
+        long startTime=System.currentTimeMillis();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             session = sessionFactory.openSession();
@@ -132,6 +149,9 @@ public class RealTimeRecordDaoImpl extends DaoUtil implements RealTimeRecordDao 
             session.close();
             sessionFactory.close();
         }
+        long endTime=System.currentTimeMillis();
+        System.out.println("程序运行时间： "+(endTime - startTime)+"ms");
+
     }
 
     public void updatePlan(String phoneNumber, Double baseCost, Integer baseCalling, Integer baseMessage, Integer

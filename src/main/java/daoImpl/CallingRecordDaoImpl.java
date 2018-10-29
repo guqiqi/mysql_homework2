@@ -19,6 +19,8 @@ public class CallingRecordDaoImpl extends DaoUtil implements CallingRecordDao {
         Session session = null;
         Transaction tx = null;
         List<CallingRecordEntity> list = new ArrayList<CallingRecordEntity>();
+
+        long startTime=System.currentTimeMillis();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             session = sessionFactory.openSession();
@@ -36,6 +38,9 @@ public class CallingRecordDaoImpl extends DaoUtil implements CallingRecordDao {
             session.close();
             sessionFactory.close();
         }
+        long endTime=System.currentTimeMillis();
+        System.out.println("程序运行时间： "+(endTime - startTime)+"ms");
+
         return list;
     }
 }

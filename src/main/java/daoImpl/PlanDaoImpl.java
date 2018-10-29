@@ -12,6 +12,8 @@ public class PlanDaoImpl extends DaoUtil implements PlanDao {
         SessionFactory sessionFactory = null;
         Session session = null;
         PlanEntity planEntity = new PlanEntity();
+
+        long startTime=System.currentTimeMillis();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             session = sessionFactory.openSession();
@@ -22,6 +24,10 @@ public class PlanDaoImpl extends DaoUtil implements PlanDao {
             session.close();
             sessionFactory.close();
         }
+
+        long endTime=System.currentTimeMillis();
+        System.out.println("程序运行时间： "+(endTime - startTime)+"ms");
+
         return planEntity;
     }
 }

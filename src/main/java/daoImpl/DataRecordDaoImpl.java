@@ -18,6 +18,8 @@ public class DataRecordDaoImpl extends DaoUtil implements DataRecordDao {
         Session session = null;
         Transaction tx = null;
         List<DataRecordEntity> list = new ArrayList<DataRecordEntity>();
+
+        long startTime=System.currentTimeMillis();
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             session = sessionFactory.openSession();
@@ -35,6 +37,9 @@ public class DataRecordDaoImpl extends DaoUtil implements DataRecordDao {
             session.close();
             sessionFactory.close();
         }
+        long endTime=System.currentTimeMillis();
+        System.out.println("程序运行时间： "+(endTime - startTime)+"ms");
+
         return list;
     }
 }
