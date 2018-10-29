@@ -6,8 +6,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class RecordServiceImplTest {
 
     @Test
@@ -32,15 +30,18 @@ public class RecordServiceImplTest {
     public void subscribePlan() {
         RecordServiceImpl recordService = new RecordServiceImpl();
         recordService.subscribePlan(1, "13700000001", SubscribeEffectType.IMMEDIATE);
-        recordService.subscribePlan(5, "13700000001", SubscribeEffectType.NEXTMONTH);
+//        recordService.subscribePlan(5, "13700000001", SubscribeEffectType.NEXTMONTH);
         recordService.subscribePlan(3, "13700000002", SubscribeEffectType.IMMEDIATE);
-        recordService.subscribePlan(4, "13700000003", SubscribeEffectType.IMMEDIATE);
-        recordService.subscribePlan(4, "13700000004", SubscribeEffectType.NEXTMONTH);
-        recordService.subscribePlan(5, "13700000005", SubscribeEffectType.IMMEDIATE);
-        recordService.subscribePlan(6, "13700000005", SubscribeEffectType.IMMEDIATE);
+//        recordService.subscribePlan(4, "13700000003", SubscribeEffectType.IMMEDIATE);
+//        recordService.subscribePlan(4, "13700000004", SubscribeEffectType.NEXTMONTH);
+//        recordService.subscribePlan(5, "13700000005", SubscribeEffectType.IMMEDIATE);
+//        recordService.subscribePlan(6, "13700000005", SubscribeEffectType.IMMEDIATE);
     }
 
     @Test
     public void unsubscribePlan() {
+        RecordServiceImpl recordService = new RecordServiceImpl();
+        recordService.unsubscribePlan(3, "13700000002", SubscribeEffectType.IMMEDIATE);
+        recordService.unsubscribePlan(1, "13700000001", SubscribeEffectType.NEXTMONTH);
     }
 }

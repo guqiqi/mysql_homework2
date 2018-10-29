@@ -12,8 +12,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>4.3.8.Final</hibernate.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-
 
     <dependencies>
         <!-- 添加Junit依赖 -->
@@ -53,7 +54,5 @@
             <artifactId>log4j</artifactId>
             <version>1.2.16</version>
         </dependency>
-
-
     </dependencies>
 </project>

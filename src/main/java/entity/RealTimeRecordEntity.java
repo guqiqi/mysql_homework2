@@ -38,7 +38,8 @@ public class RealTimeRecordEntity {
         this.baseNationalData = baseNationalData;
     }
 
-    public RealTimeRecordEntity(String phoneNumber, Double baseCost, Integer baseCalling, Integer baseMessage, Integer baseLocalData, Integer baseNationalData) {
+    public RealTimeRecordEntity(String phoneNumber, Double baseCost, Long baseCalling, Long baseMessage, Long
+            baseLocalData, Long baseNationalData) {
         this.phoneNumber = phoneNumber;
         this.baseCost = baseCost;
         this.callingCost = 0.0;
@@ -48,10 +49,10 @@ public class RealTimeRecordEntity {
         this.message = 0;
         this.localData = 0;
         this.nationalData = 0;
-        this.baseCalling = baseCalling;
-        this.baseMessage = baseMessage;
-        this.baseLocalData = baseLocalData;
-        this.baseNationalData = baseNationalData;
+        this.baseCalling = baseCalling.intValue();
+        this.baseMessage = baseMessage.intValue();
+        this.baseLocalData = baseLocalData.intValue();
+        this.baseNationalData = baseNationalData.intValue();
     }
 
     public RealTimeRecordEntity(String phoneNumber) {

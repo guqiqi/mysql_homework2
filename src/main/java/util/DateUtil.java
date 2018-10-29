@@ -37,14 +37,21 @@ public class DateUtil {
         }
     }
 
-    public static int[] getYearAndMonth() {
+    public static Date getFirstDayOfMonth() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         String tsStr = sdf.format(timestamp);
-//        System.out.println(tsStr);
-        int[] result = {Integer.parseInt(tsStr.split("-")[0]), Integer.parseInt(tsStr.split("-")[1])};
-        return result;
+
+        Date d  = new Date();
+        try {
+            sdf = new SimpleDateFormat("yyyy-MM-dd");
+            d  = sdf.parse(tsStr.substring(0, 8) + "01");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return d;
     }
 
     public static double getMonthRadio() {
@@ -58,17 +65,5 @@ public class DateUtil {
         int today = Integer.parseInt(tsStr.split("-")[2].split(" ")[0]);
 
         return (double) today / (double) maxDate;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(getFirstDayOfNextMonth());
-        System.out.println(getLastDayOfMonth());
-
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH) + 1;
-
-        System.out.println(getMonthRadio());
-        System.out.println(getYearAndMonth()[0] + "！！！" + getYearAndMonth()[1]);
     }
 }

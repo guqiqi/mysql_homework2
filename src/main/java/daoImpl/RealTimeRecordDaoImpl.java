@@ -3,6 +3,7 @@ package daoImpl;
 import dao.RealTimeRecordDao;
 import entity.BillRecordEntity;
 import entity.RealTimeRecordEntity;
+import entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -280,21 +281,35 @@ public class RealTimeRecordDaoImpl extends DaoUtil implements RealTimeRecordDao 
             Query query = session.createQuery("SELECT new BillRecordEntity(r.phoneNumber, r.baseCost, r.callingCost, r.messageCost, r.dataCost) " +
                     "from RealTimeRecordEntity r");
             List<BillRecordEntity> billList = query.list();
-            int[] yearAndMonth = DateUtil.getYearAndMonth();
-            int year = yearAndMonth[0];
-            int month = yearAndMonth[1];
+
             for (BillRecordEntity entity: billList){
-                entity.setTime(new Date(year, month, 1));
+                entity.setTime(new Date(DateUtil.getFirstDayOfMonth().getTime()));
                 session.save(entity);
             }
 
-            // 刷新每个人的实时账单
-            query = session.createQuery("SELECT new RealTimeRecordEntity (s.phoneNumber, p.baseCost, p.baseCalling, " +
-                    "p" +
-                    ".baseMessage, p.baseLocalUsage, p.baseNationalUsage) FROM SubscribeRelationEntity s, " +
-                    "PlanEntity p WHERE s.planId = p.planId GROUP BY phoneNumber");
+            // 每个人都要刷新账单
+            query = session.createQuery("FROM UserEntity");
+            List<UserEntity> userEntityList = query.list();
+            for (UserEntity entity : userEntityList) {
+                query = session.createQuery("UPDATE RealTimeRecordEntity r SET r.baseCost = 0.0, r.baseCalling =" +
+                        " 0, r.baseMessage = 0, r.baseLocalData = 0, r.baseNationalData = 0, r.callingCost = 0.0, r" +
+                        ".messageCost = 0.0, r.dataCost = 0.0, r.calling = 0,  r.message = 0, r.localData = 0, r" +
+                        ".nationalData = 0" +
+                        "where r.phoneNumber = ?");
+                query.setParameter(0, entity.getPhoneNumber());
+                query.executeUpdate();
+            }
+
+            // 根据套餐再次刷新
+            query = session.createQuery("SELECT new RealTimeRecordEntity (s.phoneNumber, SUM(p.baseCost), SUM(p" +
+                    ".baseCalling), " +
+                    "SUM(p.baseMessage), SUM(p.baseLocalUsage), SUM(p.baseNationalUsage)) FROM " +
+                    "SubscribeRelationEntity s, " +
+                    "PlanEntity p WHERE s.planId = p.planId GROUP BY s.phoneNumber");
+
             // 得到每个人订阅的套餐总和
             List<RealTimeRecordEntity> list = query.list();
+            System.out.println(list.size());
 
             for (RealTimeRecordEntity entity : list) {
                 query = session.createQuery("UPDATE RealTimeRecordEntity r SET r.baseCost = ?, r.baseCalling =" +
@@ -309,11 +324,13 @@ public class RealTimeRecordDaoImpl extends DaoUtil implements RealTimeRecordDao 
                 query.setParameter(3, entity.getBaseLocalData());
                 query.setParameter(4, entity.getBaseNationalData());
                 query.setParameter(5, entity.getPhoneNumber());
+                System.out.println(entity.getPhoneNumber());
+                query.executeUpdate();
             }
-            query.executeUpdate();
 
             tx.commit();
         } catch (Exception e) {
+            System.out.println(e);
             tx.rollback();
         } finally {
             session.close();

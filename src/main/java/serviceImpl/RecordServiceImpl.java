@@ -57,10 +57,10 @@ public class RecordServiceImpl implements RecordService {
             RealTimeRecordEntity realTimeRecordEntity = realTimeRecordDao.getRealTimeRecordByPhoneNumber
                     (phoneNumber);
             realTimeRecordDao.updatePlan(phoneNumber, realTimeRecordEntity.getBaseCost() + leftBaseCost,
-                    realTimeRecordEntity.getBaseCalling() + leftCalling,
-                    realTimeRecordEntity.getBaseMessage() + leftMessage,
-                    realTimeRecordEntity.getBaseLocalData() + leftLocalData,
-                    realTimeRecordEntity.getBaseNationalData() + leftNationalData);
+                    (int)realTimeRecordEntity.getBaseCalling() + leftCalling,
+                    (int)realTimeRecordEntity.getBaseMessage() + leftMessage,
+                    (int)realTimeRecordEntity.getBaseLocalData() + leftLocalData,
+                    (int)realTimeRecordEntity.getBaseNationalData() + leftNationalData);
 
         } else {
             subscribeRelationEntity = new SubscribeRelationEntity(phoneNumber, planId, DateUtil.getFirstDayOfNextMonth());
@@ -77,13 +77,6 @@ public class RecordServiceImpl implements RecordService {
                 .getTime()), planId, SubscribeOperationType.UNSUBSCRIBE, type);
         if (type == SubscribeEffectType.IMMEDIATE) {
             subscribeDao.modifyPlanEndTime(phoneNumber, planId, new Timestamp(new Date().getTime()));
-        } else {
-            if (planId > 4) {
-                System.out.println("Sorry, this plan cannot unsubscribe immediately!");
-                return;
-            }
-
-            subscribeDao.modifyPlanEndTime(phoneNumber, planId, DateUtil.getLastDayOfMonth());
 
             // 立即退订退款问题
             PlanDao planDao = new PlanDaoImpl();
@@ -133,8 +126,8 @@ public class RecordServiceImpl implements RecordService {
                         // 按日期退钱，减套餐
                         realTimeRecordDao.updateLocalDataPlan(phoneNumber, realTimeRecordEntity.getBaseLocalData() -
                                 planEntity
-                                .getBaseLocalUsage() *
-                                (1 - DateUtil.getMonthRadio()), realTimeRecordEntity.getBaseLocalData() - (int) (planEntity
+                                        .getBaseLocalUsage() *
+                                        (1 - DateUtil.getMonthRadio()), realTimeRecordEntity.getBaseLocalData() - (int) (planEntity
                                 .getBaseLocalUsage() *
                                 (1 - DateUtil.getMonthRadio())));
                     } else {
@@ -154,8 +147,8 @@ public class RecordServiceImpl implements RecordService {
                                         .getBaseNationalUsage() *
                                         (1 - DateUtil.getMonthRadio()), realTimeRecordEntity.getBaseNationalData() - (int)
                                 (planEntity
-                                .getBaseNationalUsage() *
-                                (1 - DateUtil.getMonthRadio())));
+                                        .getBaseNationalUsage() *
+                                        (1 - DateUtil.getMonthRadio())));
                     } else {
                         // 按用量退钱，减套餐
                         int left = realTimeRecordEntity.getBaseNationalData() - realTimeRecordEntity.getNationalData();
@@ -165,6 +158,13 @@ public class RecordServiceImpl implements RecordService {
                     }
                 }
             }
+        } else {
+            if (planId > 4) {
+                System.out.println("Sorry, this plan cannot unsubscribe immediately!");
+                return;
+            }
+
+            subscribeDao.modifyPlanEndTime(phoneNumber, planId, DateUtil.getLastDayOfMonth());
         }
 
         subscribeDao.add(subscribeRecordEntity);
