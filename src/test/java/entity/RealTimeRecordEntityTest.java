@@ -31,7 +31,9 @@ public class RealTimeRecordEntityTest {
     @Test
     public void testInsert() {
 //        RealTimeRecordEntity realTimeRecordEntity = new RealTimeRecordEntity("13770758178", 20.0, 30.0, 30.0, 30.0, 10, 10, 10, 20, 20, 30, 30, 20);
-        RealTimeRecordEntity realTimeRecordEntity = new RealTimeRecordEntity("13700000002");
+        RealTimeRecordEntity realTimeRecordEntity = new RealTimeRecordEntity("13700000001");
+        session.save(realTimeRecordEntity);
+        realTimeRecordEntity = new RealTimeRecordEntity("13700000002");
         session.save(realTimeRecordEntity);
         realTimeRecordEntity = new RealTimeRecordEntity("13700000003");
         session.save(realTimeRecordEntity);

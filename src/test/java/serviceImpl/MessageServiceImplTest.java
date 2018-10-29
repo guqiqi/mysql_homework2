@@ -1,22 +1,22 @@
 package serviceImpl;
 
-import constant.CallingType;
+import constant.MessageType;
 import helper.TimeHelper;
 import org.junit.Test;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class CallingServiceImplTest {
+public class MessageServiceImplTest {
+
     @Test
-    public void generateCallingRecord() {
+    public void generateMessageRecord() {
         for (int i = 0; i < 100; i++) {
             Date randomDate = TimeHelper.randomDate("2018-10-01", "2018-10-30");
-            int lasting = new java.util.Random().nextInt(720);
-            CallingType type = new java.util.Random().nextInt(2) == 0 ? CallingType.DIALING : CallingType.CALLED;
+            MessageType type = new java.util.Random().nextInt(2) == 0 ? MessageType.RECEIVE : MessageType.SEND;
             String[] numbers = {"13700000001", "13700000002", "13700000003", "13700000004", "13700000005"};
             String number = numbers[new java.util.Random().nextInt(5)];
-            new CallingServiceImpl().generateCallingRecord(number, new Timestamp(randomDate.getTime()), lasting, type);
+            new MessageServiceImpl().generateMessageRecord(number, new Timestamp(randomDate.getTime()), type);
         }
     }
 }

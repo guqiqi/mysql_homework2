@@ -24,8 +24,16 @@ public class DataServiceImpl implements DataService {
                 new DataRecordDaoImpl().add(dataRecordEntity);
 
                 realTimeRecordDao.updateLocalData(realTimeRecordEntity.getPhoneNumber(), realTimeRecordEntity.getLocalData() + amount, realTimeRecordEntity.getDataCost());
-            } else {
+            } else if(realTimeRecordEntity.getBaseLocalData() > realTimeRecordEntity.getLocalData()){
                 double cost = CommenCost.LOCAL_DATA / 1024 * (amount - realTimeRecordEntity.getBaseLocalData() + realTimeRecordEntity.getLocalData());
+
+                dataRecordEntity = new DataRecordEntity(phoneNumber, type, time, amount, cost);
+                new DataRecordDaoImpl().add(dataRecordEntity);
+
+                realTimeRecordDao.updateLocalData(realTimeRecordEntity.getPhoneNumber(), realTimeRecordEntity.getLocalData() + amount, realTimeRecordEntity.getDataCost() + cost);
+            }
+            else {
+                double cost = CommenCost.LOCAL_DATA / 1024 * amount;
 
                 dataRecordEntity = new DataRecordEntity(phoneNumber, type, time, amount, cost);
                 new DataRecordDaoImpl().add(dataRecordEntity);
@@ -38,8 +46,16 @@ public class DataServiceImpl implements DataService {
                 new DataRecordDaoImpl().add(dataRecordEntity);
 
                 realTimeRecordDao.updateNationalData(realTimeRecordEntity.getPhoneNumber(), realTimeRecordEntity.getNationalData() + amount, realTimeRecordEntity.getDataCost());
-            } else {
+            } else if(realTimeRecordEntity.getBaseNationalData() > realTimeRecordEntity.getNationalData()){
                 double cost = CommenCost.NATIONAL_DATA / 1024 * (amount - realTimeRecordEntity.getBaseNationalData() + realTimeRecordEntity.getNationalData());
+
+                dataRecordEntity = new DataRecordEntity(phoneNumber, type, time, amount, cost);
+                new DataRecordDaoImpl().add(dataRecordEntity);
+
+                realTimeRecordDao.updateNationalData(realTimeRecordEntity.getPhoneNumber(), realTimeRecordEntity.getNationalData() + amount, realTimeRecordEntity.getDataCost() + cost);
+            }
+            else {
+                double cost = CommenCost.NATIONAL_DATA / 1024 * amount;
 
                 dataRecordEntity = new DataRecordEntity(phoneNumber, type, time, amount, cost);
                 new DataRecordDaoImpl().add(dataRecordEntity);
