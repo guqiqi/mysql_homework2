@@ -23,9 +23,6 @@ public class Main {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
         RecordService recordService = new RecordServiceImpl();
 
-        long startTime=System.currentTimeMillis();
-        long endTime=System.currentTimeMillis();
-        System.out.println("程序运行时间： "+(endTime - startTime)+"ms");
         // 查询套餐订阅历史
         List<SubscribeRecordEntity> subscribeRecordEntityList = recordService.getSubscribeRecord("13700000003");
         for (SubscribeRecordEntity entity : subscribeRecordEntityList) {
